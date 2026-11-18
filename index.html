@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="description" content="Mussilipo Fashion — sapatos femininos, sapatos infantis e conjuntos elegantes. Encomende facilmente pelo WhatsApp.">
+  <title>Mussilipo Fashion | Moda & Estilo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --orange: #fb923c;
+      --yellow: #facc15;
+      --ink: #241638;
+      --muted: #766b83;
+      --paper: #fffaff;
+      --white: #ffffff;
+      --shadow: 0 14px 38px rgba(71, 36, 105, .12);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 8%, rgba(250, 204, 21, .14), transparent 24rem),
+        radial-gradient(circle at 96% 26%, rgba(236, 72, 153, .10), transparent 25rem),
+        var(--paper);
+      font-family: 'Nunito', sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1160px, calc(100% - 36px)); margin: auto; }
+    .top-strip {
+      padding: 9px 15px; text-align: center; color: #fff; font-size: .86rem;
+      font-weight: 800; letter-spacing: .2px;
+      background: linear-gradient(90deg, #7c3aed, #db2777, #f97316);
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,250,255,.91); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(124,58,237,.10);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; }
+    .brand-mark {
+      width: 44px; height: 44px; display: grid; place-items: center; color: white;
+      border-radius: 15px; font-size: 1.35rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--purple), var(--pink), var(--orange));
+      box-shadow: 0 7px 18px rgba(124,58,237,.23);
+    }
+    .brand-name { font: 900 1.12rem 'Poppins', sans-serif; letter-spacing: -.5px; }
+    .brand-sub { display: block; color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-weight: 800; font-size: .93rem; }
+    .nav-links a:hover { color: var(--purple); }
+    .nav-cta, .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 0; border-radius: 999px; padding: 12px 19px; cursor: pointer;
+      color: white; font: 900 .93rem 'Nunito', sans-serif;
+      background: linear-gradient(100deg, var(--purple), var(--pink));
+      box-shadow: 0 8px 20px rgba(124,58,237,.22);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(124,58,237,.28); }
+    .menu-toggle { display: none; border: 0; background: #f1e8ff; color: var(--purple); width: 42px; height: 42px; border-radius: 13px; font-size: 1.35rem; }
+    .hero { padding: 30px 0 22px; }
+    .slider {
+      position: relative; overflow: hidden; border-radius: 30px; min-height: 300px;
+      background: linear-gradient(120deg, #6d28d9, #db2777 58%, #fb923c);
+      box-shadow: var(--shadow);
+    }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .75s ease; pointer-events: none; }
+    .slide.active { opacity: 1; pointer-events: auto; }
+    .slide img { width: 100%; height: 420px; object-fit: cover; }
+    .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(31,12,55,.78), rgba(31,12,55,.26) 65%, rgba(31,12,55,.04)); }
+    .slide-copy { position: absolute; z-index: 2; left: clamp(22px, 6vw, 72px); top: 50%; transform: translateY(-50%); max-width: 520px; color: white; }
+    .eyebrow { display: inline-block; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.19); border: 1px solid rgba(255,255,255,.35); font-size: .78rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+    .slide-copy h1, .slide-copy h2 { margin: 15px 0 10px; font: 900 clamp(2rem, 5vw, 3.6rem)/1.08 'Poppins', sans-serif; letter-spacing: -1.5px; }
+    .slide-copy p { max-width: 430px; margin: 0 0 20px; font-size: 1.06rem; font-weight: 700; line-height: 1.55; }
+    .btn-light { color: #5b21b6; background: white; box-shadow: none; }
+    .slider-arrow {
+      position: absolute; z-index: 4; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%;
+      color: white; background: rgba(35,15,55,.28); font-size: 1.35rem; cursor: pointer;
+    }
+    .slider-arrow.prev { left: 15px; } .slider-arrow.next { right: 15px; }
+    .dots { position: absolute; z-index: 5; bottom: 17px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+    .dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 99px; background: rgba(255,255,255,.55); cursor: pointer; }
+    .dot.active { width: 25px; background: white; }
+    .intro { text-align: center; padding: 48px 0 24px; }
+    .section-kicker { color: var(--pink); font-size: .78rem; font-weight: 900; letter-spacing: 1.8px; text-transform: uppercase; }
+    .section-title { margin: 7px 0 10px; font: 900 clamp(1.8rem, 4vw, 2.55rem)/1.15 'Poppins', sans-serif; letter-spacing: -1px; }
+    .section-desc { max-width: 620px; margin: auto; color: var(--muted); line-height: 1.65; font-weight: 700; }
+    .promo {
+      margin: 28px auto 8px; padding: 23px 25px; border-radius: var(--radius); color: white;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      background: linear-gradient(105deg, #7c3aed, #c026d3 52%, #f97316);
+      box-shadow: 0 12px 28px rgba(192,38,211,.18);
+    }
+    .promo strong { display: block; font: 900 1.3rem 'Poppins', sans-serif; }
+    .promo span { display: block; margin-top: 4px; opacity: .94; font-weight: 700; }
+    .promo .promo-tag { flex: 0 0 auto; padding: 10px 15px; border-radius: 15px; color: #6b21a8; background: #fff; font-weight: 900; transform: rotate(2deg); }
+    .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 22px 0 50px; }
+    .category-card {
+      overflow: hidden; background: white; border: 1px solid rgba(124,58,237,.09);
+      border-radius: var(--radius); box-shadow: var(--shadow); transition: transform .22s;
+    }
+    .category-card:hover { transform: translateY(-5px); }
+    .category-image { position: relative; overflow: hidden; background: linear-gradient(135deg,#f3e8ff,#fce7f3); }
+    .category-image img { width: 100%; height: 245px; object-fit: cover; transition: transform .45s; }
+    .category-card:hover .category-image img { transform: scale(1.045); }
+    .category-content { padding: 20px; }
+    .category-content h3 { margin: 0 0 5px; font: 900 1.2rem 'Poppins', sans-serif; }
+    .category-content p { min-height: 43px; margin: 0 0 15px; color: var(--muted); font-weight: 700; line-height: 1.5; font-size: .93rem; }
+    .price-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 15px; }
+    .price-label { color: var(--muted); font-size: .78rem; font-weight: 800; }
+    .price { color: var(--purple); font: 900 1.35rem 'Poppins', sans-serif; white-space: nowrap; }
+    .order-btn { width: 100%; }
+    .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 8px 0 55px; }
+    .benefit { display: flex; align-items: center; gap: 12px; padding: 17px; border-radius: 18px; background: #fff; border: 1px solid #f0e6fa; }
+    .benefit-icon { width: 43px; height: 43px; flex: 0 0 43px; display: grid; place-items: center; border-radius: 14px; background: #f3e8ff; font-size: 1.3rem; }
+    .benefit strong { display: block; font-weight: 900; }
+    .benefit small { color: var(--muted); font-weight: 700; }
+    .reviews { margin: 0 0 58px; padding: 34px 25px; text-align: center; border: 2px dashed #dfc7fa; border-radius: var(--radius); background: linear-gradient(135deg, #fff, #fff5fc); }
+    .reviews-icon { font-size: 2rem; }
+    .reviews h2 { margin: 8px 0; font: 900 1.45rem 'Poppins', sans-serif; }
+    .reviews p { margin: 0 auto; max-width: 560px; color: var(--muted); line-height: 1.6; font-weight: 700; }
+    footer { padding: 30px 0; color: #eee7f5; background: #251337; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-brand { font: 900 1.12rem 'Poppins', sans-serif; color: white; }
+    .footer-note { color: #c9b9d8; font-size: .88rem; font-weight: 700; }
+    .whatsapp-float {
+      position: fixed; z-index: 30; right: 20px; bottom: 20px; width: 60px; height: 60px;
+      display: grid; place-items: center; border-radius: 50%; color: white; background: #25d366;
+      box-shadow: 0 8px 25px rgba(0,0,0,.22); font-size: 1.85rem; transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+    @media (max-width: 800px) {
+      .nav-links { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 18px; flex-direction: column; align-items: stretch; gap: 15px; background: #fffaff; border-bottom: 1px solid #eee; }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+      .categories { grid-template-columns: 1fr 1fr; }
+      .benefits { grid-template-columns: 1fr; }
+      .slide img { height: 360px; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 24px, 1160px); }
+      .top-strip { font-size: .76rem; }
+      .nav { min-height: 68px; }
+      .brand-mark { width: 40px; height: 40px; }
+      .brand-name { font-size: 1rem; }
+      .nav-links { top: 68px; }
+      .hero { padding-top: 14px; }
+      .slider { border-radius: 22px; min-height: 330px; }
+      .slide img { height: 330px; }
+      .slide-copy { left: 25px; right: 25px; }
+      .slide-copy h1, .slide-copy h2 { font-size: 2rem; }
+      .slide-copy p { font-size: .93rem; }
+      .slider-arrow { width: 34px; height: 34px; font-size: 1.1rem; }
+      .slider-arrow.prev { left: 8px; } .slider-arrow.next { right: 8px; }
+      .intro { padding-top: 35px; }
+      .promo { align-items: flex-start; flex-direction: column; padding: 20px; }
+      .promo strong { font-size: 1.12rem; }
+      .categories { grid-template-columns: 1fr; gap: 17px; padding-bottom: 38px; }
+      .category-image img { height: 235px; }
+      .category-content p { min-height: 0; }
+      .reviews { padding: 27px 18px; }
+      .whatsapp-float { width: 55px; height: 55px; right: 14px; bottom: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-strip">🌈 ESTILO, COR E PERSONALIDADE — ESCOLHE O TEU FAVORITO!</div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Mussilipo Fashion - início">
+        <span class="brand-mark">M</span>
+        <span><span class="brand-name">MUSSILIPO FASHION</span><span class="brand-sub">Moda & estilo</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#promocoes">Promoções</a>
+        <a href="#avaliacoes">Avaliações</a>
+      </nav>
+      <a class="nav-cta" href="https://wa.me/258862583032?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20os%20produtos%20da%20Mussilipo%20Fashion." target="_blank" rel="noopener">Falar connosco ↗</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero container" aria-label="Destaques">
+      <div class="slider" id="slider">
+        <div class="slide active">
+          <img src="imagens/banner1.jpg" alt="Destaque Mussilipo Fashion 1" onerror="this.style.visibility='hidden'">
+          <div class="slide-copy">
+            <span class="eyebrow">Mussilipo Fashion</span>
+            <h1>O teu estilo começa aqui!</h1>
+            <p>Descobre opções cheias de personalidade para completar o teu visual e o da tua família.</p>
+            <a class="btn btn-light" href="#produtos">Explorar produtos ↓</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="imagens/banner2.jpg" alt="Destaque Mussilipo Fashion 2" onerror="this.style.visibility='hidden'">
+          <div class="slide-copy">
+            <span class="eyebrow">Escolhas que encantam</span>
+            <h2>Mais cor, mais confiança!</h2>
+            <p>Encontra o teu próximo favorito e faz a tua encomenda de forma simples pelo WhatsApp.</p>
+            <a class="btn btn-light" href="#produtos">Ver coleção ↓</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="imagens/banner3.jpg" alt="Destaque Mussilipo Fashion 3" onerror="this.style.visibility='hidden'">
+          <div class="slide-copy">
+            <span class="eyebrow">A tua loja de estilo</span>
+            <h2>Um toque especial em cada escolha.</h2>
+            <p>Sapatos femininos, opções infantis e conjuntos elegantes num só lugar.</p>
+            <a class="btn btn-light" href="#produtos">Encontra o teu estilo ↓</a>
+          </div>
+        </div>
+        <button class="slider-arrow prev" id="prevSlide" aria-label="Banner anterior">‹</button>
+        <button class="slider-arrow next" id="nextSlide" aria-label="Próximo banner">›</button>
+        <div class="dots" id="sliderDots" aria-label="Escolher banner">
+          <button class="dot active" aria-label="Banner 1"></button>
+          <button class="dot" aria-label="Banner 2"></button>
+          <button class="dot" aria-label="Banner 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="promocoes">
+      <div class="promo">
+        <div>
+          <strong>🔥 Ofertas especiais à tua espera!</strong>
+          <span>Escolhe o teu produto favorito e consulta a disponibilidade pelo WhatsApp.</span>
+        </div>
+        <div class="promo-tag">PREÇOS EM MT</div>
+      </div>
+    </section>
+
+    <section class="container" id="produtos">
+      <div class="intro">
+        <span class="section-kicker">A nossa seleção</span>
+        <h2 class="section-title">Encontra o teu favorito 💖</h2>
+        <p class="section-desc">Escolhe uma das nossas categorias e encomenda diretamente connosco. Estamos aqui para ajudar!</p>
+      </div>
+
+      <div class="categories">
+        <article class="category-card">
+          <div class="category-image">
+            <img src="imagens/sapatos-mulher.jpg" alt="Sapatos de mulher" loading="lazy">
+          </div>
+          <div class="category-content">
+            <h3>👠 Sapatos de Mulher</h3>
+            <p>Um toque de elegância e estilo para completar o teu visual.</p>
+            <div class="price-row"><span class="price-label">Preço</span><span class="price">1.250 MT</span></div>
+            <a class="btn order-btn" href="https://wa.me/258862583032?text=Ol%C3%A1%21%20Quero%20encomendar%20Sapatos%20de%20Mulher%20por%201.250%20MT." target="_blank" rel="noopener">Encomendar pelo WhatsApp</a>
+          </div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-image">
+            <img src="imagens/sapatos-infantis.jpg" alt="Sapatos infantis" loading="lazy">
+          </div>
+          <div class="category-content">
+            <h3>🧸 Sapatos Infantis</h3>
+            <p>Conforto e estilo para acompanhar os pequenos em cada aventura.</p>
+            <div class="price-row"><span class="price-label">Preço</span><span class="price">550 MT</span></div>
+            <a class="btn order-btn" href="https://wa.me/258862583032?text=Ol%C3%A1%21%20Quero%20encomendar%20Sapatos%20Infantis%20por%20550%20MT." target="_blank" rel="noopener">Encomendar pelo WhatsApp</a>
+          </div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-image">
+            <img src="imagens/conjunto-elegante.jpg" alt="Conjunto elegante" loading="lazy">
+          </div>
+          <div class="category-content">
+            <h3>✨ Conjunto Elegante</h3>
+            <p>Um conjunto pensado para um visual bonito, moderno e marcante.</p>
+            <div class="price-row"><span class="price-label">Preço</span><span class="price">850 MT</span></div>
+            <a class="btn order-btn" href="https://wa.me/258862583032?text=Ol%C3%A1%21%20Quero%20encomendar%20o%20Conjunto%20Elegante%20por%20850%20MT." target="_blank" rel="noopener">Encomendar pelo WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container benefits" aria-label="Vantagens">
+      <div class="benefit"><span class="benefit-icon">📲</span><span><strong>Encomenda fácil</strong><small>Diretamente pelo WhatsApp</small></span></div>
+      <div class="benefit"><span class="benefit-icon">🤝</span><span><strong>Entrega combinada</strong><small>Combina os detalhes connosco</small></span></div>
+      <div class="benefit"><span class="benefit-icon">💜</span><span><strong>Atendimento próximo</strong><small>Estamos prontos para ajudar</small></span></div>
+    </section>
+
+    <section class="container" id="avaliacoes">
+      <div class="reviews">
+        <div class="reviews-icon">⭐💬</div>
+        <h2>O espaço das tuas opiniões</h2>
+        <p>Em breve, esta área poderá apresentar avaliações de clientes reais. Depois das primeiras encomendas, poderás adicionar aqui os comentários e experiências dos teus clientes.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><div class="footer-brand">MUSSILIPO FASHION 🌈</div><div class="footer-note">Moda, estilo e escolhas para todos os dias.</div></div>
+      <div class="footer-note">© <span id="year"></span> Mussilipo Fashion. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/258862583032?text=Ol%C3%A1%21%20Vim%20pela%20loja%20Mussilipo%20Fashion%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">✆</a>
+
+  <script>
+    // Banner rotativo: troca automaticamente a cada 5 segundos.
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    let currentSlide = 0;
+    let sliderTimer;
+
+    function showSlide(index) {
+      currentSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === currentSlide));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+    }
+    function startSlider() {
+      clearInterval(sliderTimer);
+      sliderTimer = setInterval(() => showSlide(currentSlide + 1), 5000);
+    }
+    document.getElementById('prevSlide').addEventListener('click', () => { showSlide(currentSlide - 1); startSlider(); });
+    document.getElementById('nextSlide').addEventListener('click', () => { showSlide(currentSlide + 1); startSlider(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); startSlider(); }));
+    startSlider();
+
+    // Menu compacto para telemóveis.
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
